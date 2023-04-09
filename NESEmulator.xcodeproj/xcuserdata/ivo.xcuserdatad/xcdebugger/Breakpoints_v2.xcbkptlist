@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "98C4E4E1-4809-4B58-A1A6-BFCA9D8B9D9D"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15D66BFF-BE5C-42EF-A9E7-BABDE0FACE8A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NESEmulator/Cartridge.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "Cartridge::Cartridge(sFileName)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "15D66BFF-BE5C-42EF-A9E7-BABDE0FACE8A - 78d902f3c3d49d8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cartridge::Cartridge(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;)"
+                  moduleName = "NESEmulator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivo/Coding/C++/NESEmulator/NESEmulator/Cartridge.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "15D66BFF-BE5C-42EF-A9E7-BABDE0FACE8A - 78d902f3c3d49d8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cartridge::Cartridge(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;)"
+                  moduleName = "NESEmulator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivo/Coding/C++/NESEmulator/NESEmulator/Cartridge.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

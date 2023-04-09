@@ -1,0 +1,369 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92B7949129D9DCCC0074D618 /* Bus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B7948F29D9DCCC0074D618 /* Bus.cpp */; };
+		92B7949429D9DD190074D618 /* olc6502.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B7949229D9DD190074D618 /* olc6502.cpp */; };
+		92B7949A29DB6CE50074D618 /* olcNes_Video1_6502.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B7949829DB6CE50074D618 /* olcNes_Video1_6502.cpp */; };
+		92B7949E29DC8CBD0074D618 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7949D29DC8CBD0074D618 /* OpenGL.framework */; };
+		92B794A029DC8CC80074D618 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7949F29DC8CC80074D618 /* GLUT.framework */; };
+		92B794A229DC8CD30074D618 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B794A129DC8CD30074D618 /* Carbon.framework */; };
+		92B794A529DCC06B0074D618 /* olc2C02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B794A329DCC06B0074D618 /* olc2C02.cpp */; };
+		92B794A829DCC0F20074D618 /* Cartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B794A729DCC0F20074D618 /* Cartridge.cpp */; };
+		92F4B00029E1E475002072FC /* Mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F4AFFE29E1E475002072FC /* Mapper.cpp */; };
+		92F4B00429E1E73F002072FC /* Mapper_000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F4B00329E1E73F002072FC /* Mapper_000.cpp */; };
+		92F4B00629E1FD1C002072FC /* olcPixelGameEngine.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7949729DB6C950074D618 /* olcPixelGameEngine.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92B7948329D9DC640074D618 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		92B7949B29DB6F670074D618 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		92B7948529D9DC640074D618 /* NESEmulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NESEmulator; sourceTree = BUILT_PRODUCTS_DIR; };
+		92B7948F29D9DCCC0074D618 /* Bus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bus.cpp; sourceTree = "<group>"; };
+		92B7949229D9DD190074D618 /* olc6502.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = olc6502.cpp; sourceTree = "<group>"; };
+		92B7949529D9E0CE0074D618 /* Bus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bus.h; sourceTree = "<group>"; };
+		92B7949629D9E0F70074D618 /* olc6502.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olc6502.h; sourceTree = "<group>"; };
+		92B7949729DB6C950074D618 /* olcPixelGameEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olcPixelGameEngine.h; sourceTree = "<group>"; };
+		92B7949829DB6CE50074D618 /* olcNes_Video1_6502.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = olcNes_Video1_6502.cpp; sourceTree = "<group>"; };
+		92B7949D29DC8CBD0074D618 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		92B7949F29DC8CC80074D618 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		92B794A129DC8CD30074D618 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		92B794A329DCC06B0074D618 /* olc2C02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = olc2C02.cpp; sourceTree = "<group>"; };
+		92B794A629DCC0BD0074D618 /* olc2C02.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olc2C02.h; sourceTree = "<group>"; };
+		92B794A729DCC0F20074D618 /* Cartridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cartridge.cpp; sourceTree = "<group>"; };
+		92B794A929DCC0FC0074D618 /* Cartridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cartridge.h; sourceTree = "<group>"; };
+		92F4AFFE29E1E475002072FC /* Mapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mapper.cpp; sourceTree = "<group>"; };
+		92F4B00229E1E5F7002072FC /* Mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapper.h; sourceTree = "<group>"; };
+		92F4B00329E1E73F002072FC /* Mapper_000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mapper_000.cpp; sourceTree = "<group>"; };
+		92F4B00529E1E750002072FC /* Mapper_000.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mapper_000.h; sourceTree = "<group>"; };
+		92F4B00729E2088C002072FC /* nestest.nes */ = {isa = PBXFileReference; lastKnownFileType = file; path = nestest.nes; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92B7948229D9DC640074D618 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F4B00629E1FD1C002072FC /* olcPixelGameEngine.h in Frameworks */,
+				92B794A029DC8CC80074D618 /* GLUT.framework in Frameworks */,
+				92B794A229DC8CD30074D618 /* Carbon.framework in Frameworks */,
+				92B7949E29DC8CBD0074D618 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92B7947C29D9DC640074D618 = {
+			isa = PBXGroup;
+			children = (
+				92B7948729D9DC640074D618 /* NESEmulator */,
+				92B7948629D9DC640074D618 /* Products */,
+				92B7949C29DC8CBD0074D618 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		92B7948629D9DC640074D618 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92B7948529D9DC640074D618 /* NESEmulator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92B7948729D9DC640074D618 /* NESEmulator */ = {
+			isa = PBXGroup;
+			children = (
+				92F4B00729E2088C002072FC /* nestest.nes */,
+				92B7949829DB6CE50074D618 /* olcNes_Video1_6502.cpp */,
+				92B7949729DB6C950074D618 /* olcPixelGameEngine.h */,
+				92B7948F29D9DCCC0074D618 /* Bus.cpp */,
+				92B7949529D9E0CE0074D618 /* Bus.h */,
+				92B7949229D9DD190074D618 /* olc6502.cpp */,
+				92B7949629D9E0F70074D618 /* olc6502.h */,
+				92B794A329DCC06B0074D618 /* olc2C02.cpp */,
+				92B794A629DCC0BD0074D618 /* olc2C02.h */,
+				92B794A729DCC0F20074D618 /* Cartridge.cpp */,
+				92B794A929DCC0FC0074D618 /* Cartridge.h */,
+				92F4AFFE29E1E475002072FC /* Mapper.cpp */,
+				92F4B00229E1E5F7002072FC /* Mapper.h */,
+				92F4B00329E1E73F002072FC /* Mapper_000.cpp */,
+				92F4B00529E1E750002072FC /* Mapper_000.h */,
+			);
+			path = NESEmulator;
+			sourceTree = "<group>";
+		};
+		92B7949C29DC8CBD0074D618 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92B794A129DC8CD30074D618 /* Carbon.framework */,
+				92B7949F29DC8CC80074D618 /* GLUT.framework */,
+				92B7949D29DC8CBD0074D618 /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92B7948429D9DC640074D618 /* NESEmulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92B7948C29D9DC640074D618 /* Build configuration list for PBXNativeTarget "NESEmulator" */;
+			buildPhases = (
+				92B7948129D9DC640074D618 /* Sources */,
+				92B7948229D9DC640074D618 /* Frameworks */,
+				92B7948329D9DC640074D618 /* CopyFiles */,
+				92B7949B29DB6F670074D618 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NESEmulator;
+			productName = NESEmulator;
+			productReference = 92B7948529D9DC640074D618 /* NESEmulator */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92B7947D29D9DC640074D618 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					92B7948429D9DC640074D618 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = 92B7948029D9DC640074D618 /* Build configuration list for PBXProject "NESEmulator" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 92B7947C29D9DC640074D618;
+			productRefGroup = 92B7948629D9DC640074D618 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92B7948429D9DC640074D618 /* NESEmulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92B7948129D9DC640074D618 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F4B00429E1E73F002072FC /* Mapper_000.cpp in Sources */,
+				92B7949129D9DCCC0074D618 /* Bus.cpp in Sources */,
+				92B794A529DCC06B0074D618 /* olc2C02.cpp in Sources */,
+				92F4B00029E1E475002072FC /* Mapper.cpp in Sources */,
+				92B794A829DCC0F20074D618 /* Cartridge.cpp in Sources */,
+				92B7949A29DB6CE50074D618 /* olcNes_Video1_6502.cpp in Sources */,
+				92B7949429D9DD190074D618 /* olc6502.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		92B7948A29D9DC640074D618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		92B7948B29D9DC640074D618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		92B7948D29D9DC640074D618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/Cellar/libpng/1.6.39/include/;
+				"OTHER_CPLUSPLUSFLAGS[arch=arm64]" = (
+					"$(OTHER_CFLAGS)",
+					"-std=c++17",
+					"-v",
+					"-Wall",
+					"$(LIBRARIES)",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/opt/homebrew/Cellar/libpng/1.6.39/lib/",
+					"-v",
+					"-lpng",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		92B7948E29D9DC640074D618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/Cellar/libpng/1.6.39/include/;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/opt/homebrew/Cellar/libpng/1.6.39/lib/",
+					"-lpng",
+					"-v",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92B7948029D9DC640074D618 /* Build configuration list for PBXProject "NESEmulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92B7948A29D9DC640074D618 /* Debug */,
+				92B7948B29D9DC640074D618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92B7948C29D9DC640074D618 /* Build configuration list for PBXNativeTarget "NESEmulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92B7948D29D9DC640074D618 /* Debug */,
+				92B7948E29D9DC640074D618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92B7947D29D9DC640074D618 /* Project object */;
+}
