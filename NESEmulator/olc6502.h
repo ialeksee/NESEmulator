@@ -106,7 +106,7 @@ private:
     Bus     *bus = nullptr;
     uint8_t read(uint16_t a);
     void    write(uint16_t a, uint8_t d);
-
+ 
     // The read location of data can come from two sources, a memory address, or
     // its immediately available as part of the instruction. This function decides
     // depending on address mode of instruction byte
