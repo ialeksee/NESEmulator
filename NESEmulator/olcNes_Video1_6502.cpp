@@ -57,18 +57,20 @@
 class Demo_olc2C02 : public olc::PixelGameEngine
 {
 public:
-    Demo_olc2C02() { sAppName = "olc2C02 Demonstration"; }
+    Demo_olc2C02() { sAppName = "olc6502 Demonstration"; }
 
-private:
+
     // The NES
     Bus nes;
     std::shared_ptr<Cartridge> cart;
     bool bEmulationRun = false;
     float fResidualTime = 0.0f;
+    uint8_t nSelectedPalette = 0x00;
+    std::map<uint16_t, std::string> mapAsm;
 
 private:
     // Support Utilities
-    std::map<uint16_t, std::string> mapAsm;
+
 
     std::string hex(uint32_t n, uint8_t d)
     {
@@ -208,18 +210,27 @@ private:
 
         if (GetKey(olc::Key::SPACE).bPressed) bEmulationRun = !bEmulationRun;
         if (GetKey(olc::Key::R).bPressed) nes.reset();
+        if (GetKey(olc::Key::P).bPressed) (++nSelectedPalette) &= 0x07;
 
         DrawCpu(516, 2);
         DrawCode(516, 72, 26);
-
+        // Draw Palettes & Pattern Tables ==============================================
+                const int nSwatchSize = 6;
+                for (int p = 0; p < 8; p++) // For each palette
+                    for(int s = 0; s < 4; s++) // For each index
+                        FillRect(516 + p * (nSwatchSize * 5) + s * nSwatchSize, 340,
+                            nSwatchSize, nSwatchSize, nes.ppu.GetColourFromPaletteRam(p, s));
+                
+                // Draw selection reticule around selected palette
+                DrawRect(516 + nSelectedPalette * (nSwatchSize * 5) - 1, 339, (nSwatchSize * 4), nSwatchSize, olc::WHITE);
+        
+        DrawSprite(516, 348, &nes.ppu.GetPatternTable(0, nSelectedPalette));
+        DrawSprite(648, 348, &nes.ppu.GetPatternTable(1, nSelectedPalette));
+        
         DrawSprite(0, 0, &nes.ppu.GetScreen(), 2);
         return true;
     }
 };
-
-
-
-
 
 int main()
 {

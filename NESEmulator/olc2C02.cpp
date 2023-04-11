@@ -6,6 +6,7 @@
 //
 
 #include "olc2C02.h"
+#include <cstdint>
 
 
 olc2C02::olc2C02()
@@ -166,6 +167,23 @@ uint8_t olc2C02::ppuRead(uint16_t addr, bool rdonly)
     {
         
     }
+    else if(addr >= 0x0000 && addr <= 0x1FFF)
+    {
+        data = tblPattern[(addr&0x1000) >> 12][addr&0x0FFF];
+    }
+    else if(addr >= 0x2000 && addr <= 0x3EFF)
+    {
+        
+    }
+    else if(addr >= 0x3F00 && addr <= 0x3FFF)
+    {
+        addr &= 0x001F;
+        if (addr == 0x0010) addr = 0x0000;
+        if (addr == 0x0014) addr = 0x0004;
+        if (addr == 0x0018) addr = 0x0008;
+        if (addr == 0x001C) addr = 0x000C;
+        data = tblPalette[addr];
+    }
     return  data;
 }
 
@@ -176,6 +194,24 @@ void    olc2C02::ppuWrite(uint16_t addr, uint8_t data)
     {
         
     }
+    else if(addr >= 0x0000 && addr <= 0x1FFF)
+    {
+        tblPattern[(addr&0x1000) >> 12][addr&0x0FFF] = data;
+    }
+    else if(addr >= 0x2000 && addr <= 0x3EFF)
+    {
+        
+    }
+    else if(addr >= 0x3F00 && addr <= 0x3FFF)
+    {
+        addr &= 0x001F;
+        if (addr == 0x0010) addr = 0x0000;
+        if (addr == 0x0014) addr = 0x0004;
+        if (addr == 0x0018) addr = 0x0008;
+        if (addr == 0x001C) addr = 0x000C;
+        tblPalette[addr] = data;
+    }
+
 }
 
 void olc2C02::ConnectCartridge(const std::shared_ptr<Cartridge>& cartridge)
@@ -193,8 +229,68 @@ olc::Sprite& olc2C02::GetNameTable(uint8_t i)
     return sprNameTable[i];
 }
 
-olc::Sprite& olc2C02::GetPatternTable(uint8_t i)
+olc::Sprite& olc2C02::GetPatternTable(uint8_t i, uint8_t palette)
 {
+    
+    // This function draw the CHR ROM for a given pattern table into
+    // an olc::Sprite, using a specified palette. Pattern tables consist
+    // of 16x16 "tiles or characters". It is independent of the running
+    // emulation and using it does not change the systems state, though
+    // it gets all the data it needs from the live system. Consequently,
+    // if the game has not yet established palettes or mapped to relevant
+    // CHR ROM banks, the sprite may look empty. This approach permits a
+    // "live" extraction of the pattern table exactly how the NES, and
+    // ultimately the player would see it.
+
+    // A tile consists of 8x8 pixels. On the NES, pixels are 2 bits, which
+    // gives an index into 4 different colours of a specific palette. There
+    // are 8 palettes to choose from. Colour "0" in each palette is effectively
+    // considered transparent, as those locations in memory "mirror" the global
+    // background colour being used. This mechanics of this are shown in
+    // detail in ppuRead() & ppuWrite()
+
+    // Characters on NES
+    // ~~~~~~~~~~~~~~~~~
+    // The NES stores characters using 2-bit pixels. These are not stored sequentially
+    // but in singular bit planes. For example:
+    //
+     // 2-Bit Pixels       LSB Bit Plane     MSB Bit Plane
+    // 0 0 0 0 0 0 0 0      0 0 0 0 0 0 0 0   0 0 0 0 0 0 0 0
+    // 0 1 1 0 0 1 1 0      0 1 1 0 0 1 1 0   0 0 0 0 0 0 0 0
+    // 0 1 2 0 0 2 1 0      0 1 1 0 0 1 1 0   0 0 1 0 0 1 0 0
+    // 0 0 0 0 0 0 0 0 =  0 0 0 0 0 0 0 0 + 0 0 0 0 0 0 0 0
+    // 0 1 1 0 0 1 1 0      0 1 1 0 0 1 1 0   0 0 0 0 0 0 0 0
+    // 0 0 1 1 1 1 0 0      0 0 1 1 1 1 0 0   0 0 0 0 0 0 0 0
+    // 0 0 0 2 2 0 0 0      0 0 0 1 1 0 0 0   0 0 0 1 1 0 0 0
+    // 0 0 0 0 0 0 0 0      0 0 0 0 0 0 0 0   0 0 0 0 0 0 0 0
+    //
+    // The planes are stored as 8 bytes of LSB, followed by 8 bytes of MSB
+    for(uint16_t nTileY = 0; nTileY < 16; nTileY++)
+    {
+        for(uint16_t nTileX = 0; nTileX < 16; nTileX++)
+        {
+            uint16_t nOffset = nTileY * 256 + nTileX * 16;
+            
+            for(uint16_t row = 0; row < 8; row++)
+            {
+                uint8_t tile_lsb = ppuRead(i * 0x1000 + nOffset + row + 0);
+                uint8_t tile_msb = ppuRead(i * 0x1000 + nOffset + row + 8);
+                for (uint16_t col = 0; col < 8; col++) {
+                    uint8_t pixel = (tile_lsb & 0x01) + (tile_msb & 0x01);
+                    tile_lsb >>=1;
+                    tile_msb >>=1;
+                    
+                    sprPatternTable[i].SetPixel
+                    (
+                        nTileX * 8 + (7 - col),
+                        nTileY * 8 + row,
+                        GetColourFromPaletteRam(palette, pixel)
+                     );
+                }
+            }
+            
+        }
+    }
     return sprPatternTable[i];
 }
 
@@ -217,4 +313,9 @@ void olc2C02::clock()
             frame_complete = true;
         }
     }
+}
+
+olc::Pixel& olc2C02::GetColourFromPaletteRam(uint8_t palette, uint8_t pixel)
+{
+   return palScreen[ppuRead(0x3F00 + (palette << 2) + pixel)];
 }
