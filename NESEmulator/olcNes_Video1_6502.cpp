@@ -1,5 +1,5 @@
 /*
-    olc::NES - Part #3 - Buses, Rams, Roms & Mappers
+    olc::NES - Part #4 - Buses, Rams, Roms & Mappers
     "Thanks Dad for believing computers were gonna be a big deal..." - javidx9
     License (OLC-3)
     ~~~~~~~~~~~~~~~
@@ -27,7 +27,7 @@
     THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    Relevant Video: https://youtu.be/xdzOvpYPmGE
+    Relevant Video: https://youtu.be/-THeUXqR3zY
     Links
     ~~~~~
     YouTube:    https://www.youtube.com/javidx9
@@ -57,20 +57,20 @@
 class Demo_olc2C02 : public olc::PixelGameEngine
 {
 public:
-    Demo_olc2C02() { sAppName = "olc6502 Demonstration"; }
+    Demo_olc2C02() { sAppName = "olc2C02 Demonstration"; }
 
-
+private:
     // The NES
     Bus nes;
     std::shared_ptr<Cartridge> cart;
     bool bEmulationRun = false;
     float fResidualTime = 0.0f;
+
     uint8_t nSelectedPalette = 0x00;
-    std::map<uint16_t, std::string> mapAsm;
 
 private:
     // Support Utilities
-
+    std::map<uint16_t, std::string> mapAsm;
 
     std::string hex(uint32_t n, uint8_t d)
     {
@@ -151,8 +151,9 @@ private:
     {
         // Load the cartridge
         cart = std::make_shared<Cartridge>("smb.nes");
+        
       //  if (!cart->ImageValid())
-       //     return false;
+        //    return false;
 
         // Insert into NES
         nes.InsertCartridge(cart);
@@ -168,8 +169,21 @@ private:
     bool OnUserUpdate(float fElapsedTime)
     {
         Clear(olc::DARK_BLUE);
-
-        
+/*
+        // Sneaky peek of controller input in next video! ;P
+        nes.controller[0] = 0x00;
+        nes.controller[0] |= GetKey(olc::Key::X).bHeld ? 0x80 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::Z).bHeld ? 0x40 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::A).bHeld ? 0x20 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::S).bHeld ? 0x10 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::UP).bHeld ? 0x08 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::DOWN).bHeld ? 0x04 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::LEFT).bHeld ? 0x02 : 0x00;
+        nes.controller[0] |= GetKey(olc::Key::RIGHT).bHeld ? 0x01 : 0x00;
+*/
+        if (GetKey(olc::Key::SPACE).bPressed) bEmulationRun = !bEmulationRun;
+        if (GetKey(olc::Key::R).bPressed) nes.reset();
+        if (GetKey(olc::Key::P).bPressed) (++nSelectedPalette) &= 0x07;
 
         if (bEmulationRun)
         {
@@ -208,29 +222,34 @@ private:
         }
 
 
-        if (GetKey(olc::Key::SPACE).bPressed) bEmulationRun = !bEmulationRun;
-        if (GetKey(olc::Key::R).bPressed) nes.reset();
-        if (GetKey(olc::Key::P).bPressed) (++nSelectedPalette) &= 0x07;
+        
 
         DrawCpu(516, 2);
         DrawCode(516, 72, 26);
+
         // Draw Palettes & Pattern Tables ==============================================
-                const int nSwatchSize = 6;
-                for (int p = 0; p < 8; p++) // For each palette
-                    for(int s = 0; s < 4; s++) // For each index
-                        FillRect(516 + p * (nSwatchSize * 5) + s * nSwatchSize, 340,
-                            nSwatchSize, nSwatchSize, nes.ppu.GetColourFromPaletteRam(p, s));
-                
-                // Draw selection reticule around selected palette
-                DrawRect(516 + nSelectedPalette * (nSwatchSize * 5) - 1, 339, (nSwatchSize * 4), nSwatchSize, olc::WHITE);
+        const int nSwatchSize = 6;
+        for (int p = 0; p < 8; p++) // For each palette
+            for(int s = 0; s < 4; s++) // For each index
+                FillRect(516 + p * (nSwatchSize * 5) + s * nSwatchSize, 340,
+                    nSwatchSize, nSwatchSize, nes.ppu.GetColourFromPaletteRam(p, s));
         
+        // Draw selection reticule around selected palette
+        DrawRect(516 + nSelectedPalette * (nSwatchSize * 5) - 1, 339, (nSwatchSize * 4), nSwatchSize, olc::WHITE);
+
+        // Generate Pattern Tables
         DrawSprite(516, 348, &nes.ppu.GetPatternTable(0, nSelectedPalette));
         DrawSprite(648, 348, &nes.ppu.GetPatternTable(1, nSelectedPalette));
-        
+
+        // Draw rendered output ========================================================
         DrawSprite(0, 0, &nes.ppu.GetScreen(), 2);
         return true;
     }
 };
+
+
+
+
 
 int main()
 {
