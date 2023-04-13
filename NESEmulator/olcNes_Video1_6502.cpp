@@ -150,10 +150,10 @@ private:
     bool OnUserCreate()
     {
         // Load the cartridge
-        cart = std::make_shared<Cartridge>("smb.nes");
+        cart = std::make_shared<Cartridge>("dnk.nes");
         
-      //  if (!cart->ImageValid())
-        //    return false;
+        if (!cart->ImageValid())
+            return false;
 
         // Insert into NES
         nes.InsertCartridge(cart);

@@ -19,6 +19,8 @@ public:
     Cartridge(const std::string& sFileName);
     ~Cartridge();
     
+    bool ImageValid();
+    
     enum MIRROR
     {
         HORIZONTAL,
@@ -36,6 +38,7 @@ private:
     uint8_t nCHRBanks = 0;
     
     std::shared_ptr<Mapper> pMapper;
+    bool bImageValid = false;
 public:
     // Communications with Main Bus
     bool cpuRead(uint16_t addr, uint8_t &data);
