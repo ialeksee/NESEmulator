@@ -169,7 +169,7 @@ private:
     bool OnUserUpdate(float fElapsedTime)
     {
         Clear(olc::DARK_BLUE);
-/*
+
         // Sneaky peek of controller input in next video! ;P
         nes.controller[0] = 0x00;
         nes.controller[0] |= GetKey(olc::Key::X).bHeld ? 0x80 : 0x00;
@@ -180,7 +180,7 @@ private:
         nes.controller[0] |= GetKey(olc::Key::DOWN).bHeld ? 0x04 : 0x00;
         nes.controller[0] |= GetKey(olc::Key::LEFT).bHeld ? 0x02 : 0x00;
         nes.controller[0] |= GetKey(olc::Key::RIGHT).bHeld ? 0x01 : 0x00;
-*/
+
         if (GetKey(olc::Key::SPACE).bPressed) bEmulationRun = !bEmulationRun;
         if (GetKey(olc::Key::R).bPressed) nes.reset();
         if (GetKey(olc::Key::P).bPressed) (++nSelectedPalette) &= 0x07;
@@ -225,8 +225,16 @@ private:
         
 
         DrawCpu(516, 2);
-        DrawCode(516, 72, 26);
+        //DrawCode(516, 72, 26);
 
+        for(int i = 0; i < 26; i++)
+        {
+            std::string s = hex(i, 2) + ": (" + std::to_string(nes.ppu.pOAM[i * 4 + 3])
+                 + ", " + std::to_string(nes.ppu.pOAM[i * 4 + 0]) + ") "
+                 + "ID: " + hex(nes.ppu.pOAM[i * 4 + 1], 2) + " "
+                 + "AT: " + hex(nes.ppu.pOAM[i * 4 + 2], 2);
+            DrawString(516, 72 + i * 10, s);
+        }
         // Draw Palettes & Pattern Tables ==============================================
         const int nSwatchSize = 6;
         for (int p = 0; p < 8; p++) // For each palette

@@ -176,6 +176,15 @@ private:
     uint16_t bg_shifter_pattern_hi = 0x0000;
     uint16_t bg_shifter_attrib_lo  = 0x0000;
     uint16_t bg_shifter_attrib_hi  = 0x0000;
+    
+private:
+    struct sObjectAttributeEntry
+    {
+        uint8_t y;          //Y position of the sprite
+        uint8_t id;         //ID of tile from pattern memory
+        uint8_t attribute;  //Flags define how the sprite should be rendered
+        uint8_t x;          //X position of the sprite
+    }OAM[64];
 
 public:
     // Communications with Main Bus
@@ -186,6 +195,15 @@ public:
     uint8_t ppuRead(uint16_t addr, bool rdonly = false);
     void    ppuWrite(uint16_t addr, uint8_t data);
 
+    uint8_t* pOAM = (uint8_t*)OAM;
+    
+    uint8_t oam_addr = 0x00;
+    
+    sObjectAttributeEntry spriteScanline[8];
+    uint8_t sprite_count;
+    uint8_t sprite_shifter_pattern_lo[8];
+    uint8_t sprite_shifter_pattern_hi[8];
+    
 private:
     // The Cartridge or "GamePak"
     std::shared_ptr<Cartridge> cart;
