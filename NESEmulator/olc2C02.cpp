@@ -768,7 +768,7 @@ void olc2C02::clock()
         {
             // Effectively start of new frame, so clear vertical blank flag
             status.vertical_blank = 0;
-            
+            status.sprite_zero_hit = 0;
             status.sprite_overflow = 0;
             
             for(int i = 0; i < 8; i++)
@@ -1002,7 +1002,7 @@ void olc2C02::clock()
             // found 8 or exhausted the OAM we stop. Now, notice I count to 9 sprites. This
             // is so I can set the sprite overflow flag in the event of there being > 8 sprites.
             uint8_t nOAMEntry = 0;
-
+            bSpriteZeroHitPossible = false;
 
             while (nOAMEntry < 64 && sprite_count < 9)
             {
@@ -1020,6 +1020,12 @@ void olc2C02::clock()
                     // being written to.
                    if(sprite_count < 8)
                    {
+                       //Is this sprite sprite zero?
+                       if(nOAMEntry == 0)
+                       {
+                           //It is, it may trigger sprite zero hit
+                           bSpriteZeroHitPossible = true;
+                       }
                        memcpy(&spriteScanline[sprite_count], &OAM[nOAMEntry], sizeof(sObjectAttributeEntry));
                        sprite_count++;
                    }
@@ -1222,7 +1228,8 @@ void olc2C02::clock()
         // sprite priority. As soon as we find a non transparent pixel of
         // a sprite we can abort
 
-
+        bSpriteZeroBeingRendered = false;
+        
         for (uint8_t i = 0; i < sprite_count; i++)
         {
             // Scanline cycle has "collided" with sprite, shifters taking over
@@ -1248,6 +1255,10 @@ void olc2C02::clock()
                 // in the list are higher priority
                 if (fg_pixel != 0)
                 {
+                    if (i == 0) // Is this sprite zero?
+                    {
+                        bSpriteZeroBeingRendered = true;
+                    }
                     break;
                 }
 
@@ -1300,6 +1311,29 @@ void olc2C02::clock()
         {
             pixel = bg_pixel;
             palette = bg_palette;
+        }
+        
+        if(bSpriteZeroHitPossible && bSpriteZeroBeingRendered)
+        {
+            if(mask.render_background & mask.render_sprites)
+            {
+                if(~(mask.render_background_left | mask.render_sprites_left))
+                {
+                    if(cycle >= 9 && cycle < 258)
+                    {
+                        status.sprite_zero_hit = 1;
+                    }
+                }
+                else
+                {
+                    
+                    if(cycle >= 1 && cycle < 258)
+                    {
+                        status.sprite_zero_hit = 1;
+                    }
+                }
+
+            }
         }
     }
     sprScreen->SetPixel(cycle - 1, scanline, GetColourFromPaletteRam(palette, pixel));

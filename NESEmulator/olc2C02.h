@@ -204,6 +204,11 @@ public:
     uint8_t sprite_shifter_pattern_lo[8];
     uint8_t sprite_shifter_pattern_hi[8];
     
+    // There is a sprite at position zero that can set a flag in the ppu when the scanline hits it
+    //it's used to determine which part of the screen to remain static. Once hit, you can start scrolling the rest.
+    bool bSpriteZeroHitPossible = false;
+    bool bSpriteZeroBeingRendered = false;
+    
 private:
     // The Cartridge or "GamePak"
     std::shared_ptr<Cartridge> cart;

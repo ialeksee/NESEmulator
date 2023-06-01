@@ -15,6 +15,8 @@
 		92B794A229DC8CD30074D618 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B794A129DC8CD30074D618 /* Carbon.framework */; };
 		92B794A529DCC06B0074D618 /* olc2C02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B794A329DCC06B0074D618 /* olc2C02.cpp */; };
 		92B794A829DCC0F20074D618 /* Cartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B794A729DCC0F20074D618 /* Cartridge.cpp */; };
+		92CF928A29FD841100A147EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CF928929FD841100A147EF /* OpenAL.framework */; };
+		92CF928C2A00268B00A147EF /* olc2A03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF928B2A00268A00A147EF /* olc2A03.cpp */; };
 		92F4B00029E1E475002072FC /* Mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F4AFFE29E1E475002072FC /* Mapper.cpp */; };
 		92F4B00429E1E73F002072FC /* Mapper_000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F4B00329E1E73F002072FC /* Mapper_000.cpp */; };
 		92F4B00629E1FD1C002072FC /* olcPixelGameEngine.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7949729DB6C950074D618 /* olcPixelGameEngine.h */; };
@@ -56,6 +58,10 @@
 		92B794A629DCC0BD0074D618 /* olc2C02.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olc2C02.h; sourceTree = "<group>"; };
 		92B794A729DCC0F20074D618 /* Cartridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cartridge.cpp; sourceTree = "<group>"; };
 		92B794A929DCC0FC0074D618 /* Cartridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cartridge.h; sourceTree = "<group>"; };
+		92CF928829FC48AE00A147EF /* olcPGEX_Sound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olcPGEX_Sound.h; sourceTree = "<group>"; };
+		92CF928929FD841100A147EF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		92CF928B2A00268A00A147EF /* olc2A03.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = olc2A03.cpp; sourceTree = "<group>"; };
+		92CF928D2A0026A500A147EF /* olc2A03.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olc2A03.h; sourceTree = "<group>"; };
 		92F4AFFE29E1E475002072FC /* Mapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mapper.cpp; sourceTree = "<group>"; };
 		92F4B00229E1E5F7002072FC /* Mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapper.h; sourceTree = "<group>"; };
 		92F4B00329E1E73F002072FC /* Mapper_000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mapper_000.cpp; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 				92F4B00629E1FD1C002072FC /* olcPixelGameEngine.h in Frameworks */,
 				92B794A029DC8CC80074D618 /* GLUT.framework in Frameworks */,
 				92B794A229DC8CD30074D618 /* Carbon.framework in Frameworks */,
+				92CF928A29FD841100A147EF /* OpenAL.framework in Frameworks */,
 				92B7949E29DC8CBD0074D618 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +120,9 @@
 				92F4B00229E1E5F7002072FC /* Mapper.h */,
 				92F4B00329E1E73F002072FC /* Mapper_000.cpp */,
 				92F4B00529E1E750002072FC /* Mapper_000.h */,
+				92CF928829FC48AE00A147EF /* olcPGEX_Sound.h */,
+				92CF928B2A00268A00A147EF /* olc2A03.cpp */,
+				92CF928D2A0026A500A147EF /* olc2A03.h */,
 			);
 			path = NESEmulator;
 			sourceTree = "<group>";
@@ -120,6 +130,7 @@
 		92B7949C29DC8CBD0074D618 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92CF928929FD841100A147EF /* OpenAL.framework */,
 				92B794A129DC8CD30074D618 /* Carbon.framework */,
 				92B7949F29DC8CC80074D618 /* GLUT.framework */,
 				92B7949D29DC8CBD0074D618 /* OpenGL.framework */,
@@ -187,6 +198,7 @@
 			files = (
 				92F4B00429E1E73F002072FC /* Mapper_000.cpp in Sources */,
 				92B7949129D9DCCC0074D618 /* Bus.cpp in Sources */,
+				92CF928C2A00268B00A147EF /* olc2A03.cpp in Sources */,
 				92B794A529DCC06B0074D618 /* olc2C02.cpp in Sources */,
 				92F4B00029E1E475002072FC /* Mapper.cpp in Sources */,
 				92B794A829DCC0F20074D618 /* Cartridge.cpp in Sources */,
@@ -311,13 +323,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/Cellar/libpng/1.6.39/include/;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/opt/homebrew/Cellar/libpng/1.6.39/include/,
+					"/opt/homebrew/Cellar/openal-soft/1.23.1/include",
+				);
+				OTHER_CFLAGS = "";
 				"OTHER_CPLUSPLUSFLAGS[arch=arm64]" = (
 					"$(OTHER_CFLAGS)",
 					"-std=c++17",
 					"-v",
 					"-Wall",
 					"$(LIBRARIES)",
+					"-DUSE_OPENAL",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-L/opt/homebrew/Cellar/libpng/1.6.39/lib/",
@@ -333,6 +350,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/Cellar/libpng/1.6.39/include/;
+				OTHER_CFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-L/opt/homebrew/Cellar/libpng/1.6.39/lib/",
 					"-lpng",

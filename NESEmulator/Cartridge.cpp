@@ -73,8 +73,8 @@ Cartridge::Cartridge(const std::string& sFileName)
                 break;
                 
             default:
-               // pMapper = std::make_shared<Mapper_000>(nPRGBanks, nCHRBanks);
-          //      bImageValid = true;
+                pMapper = std::make_shared<Mapper_000>(nPRGBanks, nCHRBanks);
+                bImageValid = true;
                 //pMapper = nullptr;
                 break;
         }

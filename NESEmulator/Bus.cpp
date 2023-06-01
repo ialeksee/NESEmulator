@@ -22,6 +22,12 @@ Bus::~Bus()
     
 }
 
+void Bus::SetSampleFrequency(uint32_t sample_rate)
+{
+    dAudioTimePerSystemSample = 1.0/ (double)sample_rate;
+    dAudioTimePerNESClock = 1.0 / 5369318.0; // Magic number -> Core crystal frequency of the NES
+}
+
 void Bus::cpuWrite(uint16_t addr, uint8_t data)
 {
     if(cart->cpuWrite(addr, data))
@@ -35,6 +41,10 @@ void Bus::cpuWrite(uint16_t addr, uint8_t data)
     else if(addr >= 0x2000 && addr <= 0x3FFF)
     {
         ppu.cpuWrite(addr&0x0007, data);
+    }
+    else if ((addr >= 0x4000 && addr <= 0x4013) || addr == 0x4015 || addr == 0x4017) // NES APU
+    {
+        apu.cpuWrite(addr, data);
     }
     else if (addr == 0x4014)
     {
@@ -78,9 +88,12 @@ void Bus::reset()
     nSystemClockCounter = 0;
 }
 
-void Bus::clock()
+bool Bus::clock()
 {
     ppu.clock();
+
+    apu.clock();
+    
     if (nSystemClockCounter % 3 == 0)
     {
         if(dma_transfer)
@@ -117,6 +130,16 @@ void Bus::clock()
         }
     }
     
+    bool bAudioSampleReady = false;
+    dAudioTime += dAudioTimePerNESClock;
+    
+    if(dAudioTime >= dAudioTimePerSystemSample)
+    {
+        dAudioTime -= dAudioTimePerSystemSample;
+        dAudioSample = apu.GetOutputSample();
+        bAudioSampleReady = true;
+    }
+    
     if(ppu.nmi)
     {
         ppu.nmi = false;
@@ -124,6 +147,8 @@ void Bus::clock()
     }
     
     nSystemClockCounter++;
+    
+    return bAudioSampleReady;
 }
 
 void Bus::InsertCartridge(const std::shared_ptr<Cartridge>& cartridge)
